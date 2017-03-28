@@ -1,12 +1,9 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import TextField from './../TextField';
-import SelectField from './../SelectField';
 import { Field, reduxForm } from 'redux-form/immutable';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
-import MenuItem from 'material-ui/MenuItem';
-import { appLocales } from '../../i18n';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -20,7 +17,7 @@ const SendButton = styled.div`
 
 const validate = values => {
 	const errors = {};
-	const requiredFields = ['aboutMe', 'funFacts', 'passion', 'mylife', 'language'];
+	const requiredFields = ['houseDetail', 'city', 'state', 'country', 'pincode','mobile', 'email', 'website'];
 	requiredFields.forEach(field => {
 		if (!values.get(field)) {
 			errors[field] = 'Required';
@@ -29,25 +26,21 @@ const validate = values => {
 	return errors;
 };
 
-const AboutMeForm = props => {
+const ContactInfoForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="aboutMe" component={TextField} label="About Me" />
-			<Field name="funFacts" component={TextField} label="Fun Facts" />
-			<Field name="passion" component={TextField} label="Passion" />
-			<Field name="mylife" component={TextField} label="My Life" />
-			<Field name="language" component={SelectField} label="Language">
-				{
-					appLocales.map((value) =>
-						<MenuItem
-							key={value}
-							value={value}
-							primaryText={value}
-						/>
-					)
-				}
-			</Field>
+			<Field name="houseDetail" component={TextField} label="houseDetail" />
+			<Field name="streetName" component={TextField} label="streetName" />
+			<Field name="area" component={TextField} label="area" />
+			<Field name="city" component={TextField} label="city" />
+			<Field name="state" component={TextField} label="state" />
+			<Field name="country" component={TextField} label="country" />
+			<Field name="pincode" component={TextField} label="pincode" />
+			<Field name="landmark" component={TextField} label="landmark" />
+			<Field name="mobile" component={TextField} label="mobile" />
+			<Field name="email" component={TextField} label="email" />
+			<Field name="website" component={TextField} label="website" />			
 			<SendButton>
 				<RaisedButton
 					style={{ height: '50px', minWidth: '150px' }}
@@ -64,13 +57,13 @@ const AboutMeForm = props => {
 	);
 };
 
-AboutMeForm.propTypes = {
+ContactInfoForm.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
 	pristine: PropTypes.bool.isRequired,
 	loading: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({
-	form: 'AboutMeForm',
+	form: 'ContactInfoForm',
 	validate
-})(AboutMeForm);
+})(ContactInfoForm);

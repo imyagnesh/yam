@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import TextField from './../TextField';
-import SelectField from './../SelectField';
+import FileInput from './../FileInput';
+import Slider from './../Slider';
 import { Field, reduxForm } from 'redux-form/immutable';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
-import MenuItem from 'material-ui/MenuItem';
-import { appLocales } from '../../i18n';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -20,7 +19,7 @@ const SendButton = styled.div`
 
 const validate = values => {
 	const errors = {};
-	const requiredFields = ['aboutMe', 'funFacts', 'passion', 'mylife', 'language'];
+	const requiredFields = ['skillName', 'website', 'description', 'skillLogo', 'ratting'];
 	requiredFields.forEach(field => {
 		if (!values.get(field)) {
 			errors[field] = 'Required';
@@ -29,25 +28,15 @@ const validate = values => {
 	return errors;
 };
 
-const AboutMeForm = props => {
+const SkillForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="aboutMe" component={TextField} label="About Me" />
-			<Field name="funFacts" component={TextField} label="Fun Facts" />
-			<Field name="passion" component={TextField} label="Passion" />
-			<Field name="mylife" component={TextField} label="My Life" />
-			<Field name="language" component={SelectField} label="Language">
-				{
-					appLocales.map((value) =>
-						<MenuItem
-							key={value}
-							value={value}
-							primaryText={value}
-						/>
-					)
-				}
-			</Field>
+			<Field name="skillName" component={TextField} label="name" />
+			<Field name="website" component={TextField} label="website" />
+			<Field name="description" component={TextField} label="description" />
+			<Field name="skillLogo" component={FileInput} label="logo" multiple={false} accept="image/*" />
+			<Field name="ratting" component={Slider} min={0} max={5} step={0.5} defaultValue={2.5} />
 			<SendButton>
 				<RaisedButton
 					style={{ height: '50px', minWidth: '150px' }}
@@ -64,13 +53,13 @@ const AboutMeForm = props => {
 	);
 };
 
-AboutMeForm.propTypes = {
+SkillForm.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
 	pristine: PropTypes.bool.isRequired,
 	loading: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({
-	form: 'AboutMeForm',
+	form: 'skillForm',
 	validate
-})(AboutMeForm);
+})(SkillForm);

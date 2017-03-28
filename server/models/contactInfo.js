@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
 
-const ContactMeSchema = new mongoose.Schema({
+const ContactInfoSchema = new mongoose.Schema({
 	address: {
-		type: String,
-		required: [true, 'address is required.'],
+		houseDetail: String,
+		streetName: String,
+		area: String,
+		city: String,
+		state: String,
+		country: String,
+		pincode: Number,
+		landmark: String,
 	},
 	mobile: {
 		type: Number,
@@ -23,4 +29,4 @@ const ContactMeSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model('ContactMe', ContactMeSchema);
+module.exports = mongoose.model('ContactInfo', ContactInfoSchema);

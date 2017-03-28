@@ -116,13 +116,19 @@ childRoutes: [
     getComponent(nextState, cb) {
       const importModules = Promise.all([
             import('./reducers/personalInfoReducer'),
+            import('./reducers/aboutMeReducer'),
+            import('./reducers/contactInfoReducer'),
+            import('./reducers/skillReducer'),
             import('./views/Dashboard'),
 ]);
 
 const renderRoute = loadModule(cb);
 
-importModules.then(([personalInfoReducer, component]) => {
+importModules.then(([personalInfoReducer, aboutMeReducer, contactInfo, skill, component]) => {
   injectReducer('personalInfo', personalInfoReducer.default);
+  injectReducer('aboutMe', aboutMeReducer.default);
+  injectReducer('contactInfo', contactInfo.default);
+  injectReducer('skill', skill.default);
   renderRoute(component);
 });
 

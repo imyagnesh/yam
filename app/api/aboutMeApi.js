@@ -7,9 +7,11 @@ class AboutMeApi {
 			request('/api/saveAboutMe', {
 				method: 'post',
 				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
 					authorization: `bearer ${token}`
 				},
-				body: data,
+				body: JSON.stringify(data),
 			}).then(json => resolve(Object.assign([], json)))
 				.catch(err => reject(Object.assign([], err)));
 
