@@ -95,7 +95,6 @@ module.exports = {
 
 	save: function (model, res) {
 		model.save(function (err, data) {
-			console.log(err);
 			if (err) {
 				res.status(400).json({
 					success: false,
