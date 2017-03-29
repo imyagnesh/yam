@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const PersonalInfo = mongoose.model('PersonalInfo');
 const utils = require('../utils');
-const { upsert } = utils;
+const { upsert, findOne } = utils;
 const config = require('../../config');
 const formidable = require('formidable');
 const fs = require('fs');
@@ -43,4 +43,10 @@ module.exports.savePersonalInfo = (req, res) => {
 
 		upsert(PersonalInfo, query, data, options, res);
 	});
+};
+
+module.exports.getPersonalInfo = (req, res) => {
+	const decodeToken = jwt.verify(req.headers.authorization.split(' ')[1], config.jwtSecret);
+	const query = { userId: decodeToken.sub };
+	findOne(PersonalInfo, query, res);
 };

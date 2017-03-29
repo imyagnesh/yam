@@ -11,6 +11,6 @@ const DetailSchema = new mongoose.Schema({
 		required: [true, 'email is required.'],
 	},
 	description: String
-});
+}, { versionKey: false });
 
 module.exports = DetailSchema;

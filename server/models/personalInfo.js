@@ -22,6 +22,6 @@ const PersonalInfoSchema = new mongoose.Schema({
 	smallImage: { data: Buffer, contentType: String },
 	largeImage: { data: Buffer, contentType: String },
 	resume: { data: Buffer, contentType: String }
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model('PersonalInfo', PersonalInfoSchema);

@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'email is required.'],
   },
   password: String,
-});
+}, { versionKey: false });
 
 
 /**

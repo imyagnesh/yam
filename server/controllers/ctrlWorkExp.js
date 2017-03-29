@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const WorkExp = mongoose.model('WorkExp');
 const utils = require('../utils');
-const { save } = utils;
+const { save, find } = utils;
 const config = require('../../config');
 const formidable = require('formidable');
 const fs = require('fs');
@@ -35,4 +35,10 @@ module.exports.saveWorkExp = (req, res) => {
 		save(workExp, res);
 	});
 
+};
+
+module.exports.getWorkExp = (req, res) => {
+	const decodeToken = jwt.verify(req.headers.authorization.split(' ')[1], config.jwtSecret);
+	const query = { userId: decodeToken.sub };
+	find(WorkExp, query, res);
 };

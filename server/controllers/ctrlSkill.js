@@ -21,7 +21,7 @@ module.exports.saveSkill = (req, res) => {
 				contentType: files.skillLogo.type
 			},
 			website: fields.website,
-			description:fields.description,
+			description: fields.description,
 		});
 
 		const skill = new Skill({
@@ -40,7 +40,27 @@ module.exports.saveSkill = (req, res) => {
 			skill.technology = data._id;
 			save(skill, res);
 		});
-		
+
+	});
+
+};
+
+module.exports.getSkills = (req, res) => {
+	const decodeToken = jwt.verify(req.headers.authorization.split(' ')[1], config.jwtSecret);
+	const query = { userId: decodeToken.sub };
+	Skill.find(query).populate('technology').exec(function (err, data) {
+		if (err) {
+			res.status(400).json({
+				success: false,
+				message: err.message,
+			});
+			return;
+		}
+		res.status(200).json({
+			success: true,
+			message: "Personal Information Saved.",
+			data: data,
+		});
 	});
 
 };

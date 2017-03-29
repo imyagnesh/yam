@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const ContactInfo = mongoose.model('ContactInfo');
 const utils = require('../utils');
-const { upsert } = utils;
+const { upsert, findOne } = utils;
 const config = require('../../config');
 
 module.exports.saveContactInfo = (req, res) => {
@@ -33,4 +33,10 @@ module.exports.saveContactInfo = (req, res) => {
 	};
 
 	upsert(ContactInfo, query, data, options, res);
+};
+
+module.exports.getContactInfo = (req, res) => {
+	const decodeToken = jwt.verify(req.headers.authorization.split(' ')[1], config.jwtSecret);
+	const query = { userId: decodeToken.sub };
+	findOne(ContactInfo, query, res);
 };
