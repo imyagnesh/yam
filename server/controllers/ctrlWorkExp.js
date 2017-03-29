@@ -15,20 +15,20 @@ module.exports.saveWorkExp = (req, res) => {
 
 		const workExp = new WorkExp({
 			company: {
-				name: req.body.companyName,
+				name: fields.companyName,
 				logo: {
 					data: fs.readFileSync(files.companyLogo.path),
 					contentType: files.companyLogo.type
 				},
-				website: req.body.companyWebsite,
-				description: req.body.description,
+				website: fields.companyWebsite,
+				description: fields.description,
 			},
-			designation: req.body.university,
-			role: req.body.degree,
-			joiningDate: req.body.joiningDate,
-			leavingDate: req.body.leavingDate,
-			isPressent: req.body.isPressent,
-			achievements: req.body.achievements,
+			designation: fields.designation,
+			role: fields.role,
+			joiningDate: fields.joiningDate,
+			leavingDate: fields.leavingDate,
+			isPressent: fields.isPressent,
+			achievements: JSON.parse(fields.achievements),
 			userId: decodeToken.sub,
 		});
 

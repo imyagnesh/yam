@@ -4,6 +4,7 @@ import PersonalInfo from './../../containers/PersonalInfo';
 import ContactInfo from './../../containers/ContactInfo';
 import Skill from './../../containers/Skill';
 import Education from './../../containers/Education';
+import WorkExp from './../../containers/WorkExp';
 
 class Dashboard extends Component {
 	render() {
@@ -15,6 +16,7 @@ class Dashboard extends Component {
 				<ContactInfo />
 				<Skill />
 				<Education />
+				<WorkExp />
 			</div>
 		);
 	}
