@@ -3,6 +3,7 @@ import AboutMe from './../../containers/AboutMe';
 import PersonalInfo from './../../containers/PersonalInfo';
 import ContactInfo from './../../containers/ContactInfo';
 import Skill from './../../containers/Skill';
+import Education from './../../containers/Education';
 
 class Dashboard extends Component {
 	render() {
@@ -13,6 +14,7 @@ class Dashboard extends Component {
 				<PersonalInfo />
 				<ContactInfo />
 				<Skill />
+				<Education />
 			</div>
 		);
 	}

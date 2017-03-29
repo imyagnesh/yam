@@ -119,16 +119,18 @@ childRoutes: [
             import('./reducers/aboutMeReducer'),
             import('./reducers/contactInfoReducer'),
             import('./reducers/skillReducer'),
+            import('./reducers/educationReducer'),
             import('./views/Dashboard'),
 ]);
 
 const renderRoute = loadModule(cb);
 
-importModules.then(([personalInfoReducer, aboutMeReducer, contactInfo, skill, component]) => {
+importModules.then(([personalInfoReducer, aboutMeReducer, contactInfo, skill, education, component]) => {
   injectReducer('personalInfo', personalInfoReducer.default);
   injectReducer('aboutMe', aboutMeReducer.default);
   injectReducer('contactInfo', contactInfo.default);
   injectReducer('skill', skill.default);
+  injectReducer('education', education.default);
   renderRoute(component);
 });
 

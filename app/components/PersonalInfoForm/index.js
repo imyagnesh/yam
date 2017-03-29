@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import TextField from './../TextField';
 import FileInput from './../FileInput';
 import { Field, reduxForm } from 'redux-form/immutable';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
+
+import {
+  TextField,
+} from 'redux-form-material-ui';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -29,12 +32,11 @@ const validate = values => {
 
 const PersonalInfoForm = props => {
 	const { handleSubmit, pristine, loading } = props;
-	console.log(loading);
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="firstName" component={TextField} label="First Name" />
-			<Field name="lastName" component={TextField} label="Last Name" />
-			<Field name="designation" component={TextField} label="Designation" />
+			<Field name="firstName" component={TextField} floatingLabelText="First Name" />
+			<Field name="lastName" component={TextField} floatingLabelText="Last Name" />
+			<Field name="designation" component={TextField} floatingLabelText="Designation" />
 			<Field name="smallImage" component={FileInput} label="Small Image" multiple={false} accept="image/*" />
 			<Field name="largeImage" component={FileInput} label="Large Image" multiple={false} accept="image/*" />
 			<Field name="resume" component={FileInput} label="Resume" multiple={false} accept="application/pdf" />

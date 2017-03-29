@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import TextField from 'material-ui/TextField';
 import { Field, reduxForm } from 'redux-form/immutable';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
+
+import {
+  TextField,
+} from 'redux-form-material-ui';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -29,23 +32,12 @@ const validate = values => {
 	return errors;
 };
 
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-	<TextField hintText={label}
-		floatingLabelText={label}
-		errorText={touched && error}
-		{...input}
-		{...custom}
-	/>
-);
-
-
-
 const LoginForm = props => {
 	const { handleSubmit, pristine, submitting } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="email" component={renderTextField} label="Email Address" />
-			<Field name="password" component={renderTextField} label="password" type="password" />
+			<Field name="email" component={TextField} floatingLabelText="Email Address" />
+			<Field name="password" component={TextField} floatingLabelText="password" type="password" />
 			<SendButton>
 				<RaisedButton
 					style={{ height: '50px', minWidth: '150px' }}

@@ -15,20 +15,20 @@ module.exports.saveEducation = (req, res) => {
 
 		const education = new Education({
 			collage: {
-				name: req.body.collageName,
+				name: fields.collageName,
 				logo: {
 					data: fs.readFileSync(files.collageLogo.path),
 					contentType: files.collageLogo.type
 				},
-				website: req.body.collageWebsite,
-				description: req.body.description,
+				website: fields.collageWebsite,
+				description: fields.description,
 			},
-			university: req.body.university,
-			degree: req.body.degree,
-			joiningDate: req.body.joiningDate,
-			leavingDate: req.body.leavingDate,
-			percentage: req.body.percentage,
-			achievements: req.body.achievements,
+			university: fields.university,
+			degree: fields.degree,
+			joiningDate: fields.joiningDate,
+			leavingDate: fields.leavingDate,
+			percentage: fields.percentage,
+			achievements: JSON.parse(fields.achievements),
 			userId: decodeToken.sub,
 		});
 

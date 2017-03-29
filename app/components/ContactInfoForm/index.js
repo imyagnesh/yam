@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import TextField from './../TextField';
 import { Field, reduxForm } from 'redux-form/immutable';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
+import {
+  TextField,
+} from 'redux-form-material-ui';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -30,17 +32,17 @@ const ContactInfoForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="houseDetail" component={TextField} label="houseDetail" />
-			<Field name="streetName" component={TextField} label="streetName" />
-			<Field name="area" component={TextField} label="area" />
-			<Field name="city" component={TextField} label="city" />
-			<Field name="state" component={TextField} label="state" />
-			<Field name="country" component={TextField} label="country" />
-			<Field name="pincode" component={TextField} label="pincode" />
-			<Field name="landmark" component={TextField} label="landmark" />
-			<Field name="mobile" component={TextField} label="mobile" />
-			<Field name="email" component={TextField} label="email" />
-			<Field name="website" component={TextField} label="website" />			
+			<Field name="houseDetail" component={TextField} floatingLabelText="houseDetail" />
+			<Field name="streetName" component={TextField} floatingLabelText="streetName" />
+			<Field name="area" component={TextField} floatingLabelText="area" />
+			<Field name="city" component={TextField} floatingLabelText="city" />
+			<Field name="state" component={TextField} floatingLabelText="state" />
+			<Field name="country" component={TextField} floatingLabelText="country" />
+			<Field name="pincode" component={TextField} floatingLabelText="pincode" />
+			<Field name="landmark" component={TextField} floatingLabelText="landmark" />
+			<Field name="mobile" component={TextField} floatingLabelText="mobile" />
+			<Field name="email" component={TextField} floatingLabelText="email" />
+			<Field name="website" component={TextField} floatingLabelText="website" />			
 			<SendButton>
 				<RaisedButton
 					style={{ height: '50px', minWidth: '150px' }}

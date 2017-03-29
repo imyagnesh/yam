@@ -1,12 +1,15 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import TextField from './../TextField';
-import SelectField from './../SelectField';
 import { Field, reduxForm } from 'redux-form/immutable';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import MenuItem from 'material-ui/MenuItem';
 import { appLocales } from '../../i18n';
+
+import {
+  SelectField,
+  TextField,
+} from 'redux-form-material-ui';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -33,11 +36,11 @@ const AboutMeForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="aboutMe" component={TextField} label="About Me" />
-			<Field name="funFacts" component={TextField} label="Fun Facts" />
-			<Field name="passion" component={TextField} label="Passion" />
-			<Field name="mylife" component={TextField} label="My Life" />
-			<Field name="language" component={SelectField} label="Language">
+			<Field name="aboutMe" component={TextField} floatingLabelText="About Me" />
+			<Field name="funFacts" component={TextField} floatingLabelText="Fun Facts" />
+			<Field name="passion" component={TextField} floatingLabelText="Passion" />
+			<Field name="mylife" component={TextField} floatingLabelText="My Life" />
+			<Field name="language" component={SelectField} floatingLabelText="Language">
 				{
 					appLocales.map((value) =>
 						<MenuItem

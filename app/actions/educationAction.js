@@ -21,6 +21,7 @@ export function educationSave(data) {
         dispatch(educationSaveSuccess(education));
       }
     }).catch((error) => {
+      console.log(error);
       dispatch(educationSaveFail(error));
     });
   };
