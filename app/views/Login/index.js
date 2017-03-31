@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import Paper from 'material-ui/Paper';
 import { LoginForm } from '../../components';
-import { makeSelectLoading, makeSelectError } from './../../selectors/loginSelector';
 import * as loginActions from './../../actions/loginActions';
 
 const style = {
@@ -21,7 +19,7 @@ class Login extends Component {
 	}
 
 	login(values) {
-		this.props.actions.login(values.toJSON());
+		this.props.actions.login(values);
 	}
 
 	render() {
@@ -34,7 +32,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-	loading: PropTypes.bool.isRequired,
+	login: PropTypes.object.isRequired,
 	actions: PropTypes.object.isRequired,
 };
 
@@ -44,9 +42,9 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-const mapStateToProps = createStructuredSelector({
-	loading: makeSelectLoading(),
-	error: makeSelectError(),
+const mapStateToProps = (state) => ({
+  login: state.login,
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

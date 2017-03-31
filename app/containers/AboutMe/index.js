@@ -1,10 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import AboutMeForm from '../../components/AboutMeForm';
-
-import { getAboutMe, makeAboutMeLoading, makeAboutMeError } from './../../selectors/aboutMeSelector';
 import * as aboutMeAction from './../../actions/aboutMeAction';
 
 class AboutMe extends Component {
@@ -14,19 +11,19 @@ class AboutMe extends Component {
 	}
 
 	submitAboutMe(values) {
-		this.props.aboutMeAction.aboutMeSave(values.toJSON());
+		this.props.aboutMeAction.aboutMeSave(values);
 	}
 	render() {
 		return (
 			<div>
-				<AboutMeForm onSubmit={this.submitAboutMe} loading={this.props.loading} />
+				<AboutMeForm onSubmit={this.submitAboutMe} loading={this.props.aboutMe.loading} />
 			</div>
 		);
 	}
 }
 
 AboutMe.propTypes = {
-	loading: PropTypes.bool.isRequired,
+	aboutMe: PropTypes.object.isRequired,
 	aboutMeAction: PropTypes.object.isRequired,
 };
 
@@ -36,10 +33,9 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-const mapStateToProps = createStructuredSelector({
-	aboutMe: getAboutMe(),
-	loading: makeAboutMeLoading(),
-	error: makeAboutMeError(),
+const mapStateToProps = (state) => ({
+  aboutMe: state.aboutMe,
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(AboutMe);

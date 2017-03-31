@@ -1,15 +1,12 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import MenuItem from 'material-ui/MenuItem';
+import SelectField from './../../InputComponents/renderSelectField';
+import TextField from './../../InputComponents/renderTextField';
 import { appLocales } from '../../i18n';
-
-import {
-  SelectField,
-  TextField,
-} from 'redux-form-material-ui';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -20,17 +17,6 @@ const SendButton = styled.div`
     align-self: center;
     margin: 1em;
 `;
-
-const validate = values => {
-	const errors = {};
-	const requiredFields = ['aboutMe', 'funFacts', 'passion', 'mylife', 'language'];
-	requiredFields.forEach(field => {
-		if (!values.get(field)) {
-			errors[field] = 'Required';
-		}
-	});
-	return errors;
-};
 
 const AboutMeForm = props => {
 	const { handleSubmit, pristine, loading } = props;
@@ -75,5 +61,4 @@ AboutMeForm.propTypes = {
 
 export default reduxForm({
 	form: 'AboutMeForm',
-	validate
 })(AboutMeForm);

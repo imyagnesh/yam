@@ -17,6 +17,7 @@ export function educationSave(data) {
   return (dispatch) => {
     dispatch(educationSaveRequest());
     return EducationApi.save(data).then((education) => {
+      console.log(education);
       if (education.success) {
         dispatch(educationSaveSuccess(education));
       }

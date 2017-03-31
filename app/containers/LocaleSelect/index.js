@@ -7,7 +7,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 import { FormattedMessage } from 'react-intl';
 
 import IconMenu from 'material-ui/IconMenu';
@@ -18,7 +17,6 @@ import CountryFlags from '../../common/countryFlags';
 import messages from './messages';
 import { appLocales } from '../../i18n';
 import { changeLocale } from '../../actions';
-import { selectLocale } from '../../selectors';
 
 const FlagImage = styled.img`
   width: 24px;
@@ -62,10 +60,9 @@ LocaleToggle.propTypes = {
     locale: React.PropTypes.string,
 };
 
-const mapStateToProps = createSelector(
-    selectLocale(),
-    (locale) => ({ locale })
-);
+const mapStateToProps = (state) => ({
+  locale: state.language,
+});
 
 export function mapDispatchToProps(dispatch) {
     return {

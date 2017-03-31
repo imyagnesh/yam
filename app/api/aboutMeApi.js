@@ -14,10 +14,22 @@ class AboutMeApi {
 				body: JSON.stringify(data),
 			}).then(json => resolve(Object.assign([], json)))
 				.catch(err => reject(Object.assign([], err)));
-
 		});
 	}
-
+	static getAboutMe(language) {
+		return new Promise((resolve, reject) => {
+			const token = sessionStorage.getItem('token');
+			request(`/api/getAboutMe/${language}`, {
+				method: 'get',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					authorization: `bearer ${token}`
+				},
+			}).then(json => resolve(Object.assign([], json)))
+				.catch(err => reject(Object.assign([], err)));
+		});
+	}
 }
 
 export default AboutMeApi;

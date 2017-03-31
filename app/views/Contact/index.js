@@ -1,11 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { createSelector } from 'reselect';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import messages from './messages';
 import { CoverImg, SectionHeader, ContactForm, GoogleMap, ContactInfo, ContactSocial } from '../../components';
 import coverImage from '../../common/videos/cover.jpg';
-import { selectLocale } from '../../selectors';
 
 const ContentWrapper = styled.div`
     display: flex;
@@ -88,9 +86,8 @@ Contact.propTypes = {
     locale: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = createSelector(
-    selectLocale(),
-    (locale) => ({ locale })
-);
+const mapStateToProps = (state) => ({
+  locale: state.language,
+});
 
 export default connect(mapStateToProps)(Contact);

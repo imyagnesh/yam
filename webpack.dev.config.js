@@ -5,7 +5,7 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 const plugins = [
     new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
         template: 'app/index.html',
         inject: true,

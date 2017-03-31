@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Dropzone from 'react-dropzone';
 
 const FileInput = props => {
-	const { name, input, meta, ...custom } = props;
+	const { name, input, meta, multiple, ...custom } = props;
 	const { value, onChange } = input;
 	const { touched, error } = meta;
 	return (
@@ -10,8 +10,9 @@ const FileInput = props => {
 			<Dropzone
 				name={name}
 				onDrop={(files) => {
-					onChange(files[0]);
+					onChange(multiple ? files : files[0]);
 				}}
+				multiple={multiple}
 				{...custom}
 			>
 				<div>Try dropping some files here, or click to select files to upload.</div>

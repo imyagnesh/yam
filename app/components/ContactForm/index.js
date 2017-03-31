@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
@@ -22,20 +22,6 @@ const WrapperDiv = styled.div`
     }
 `;
 
-
-const validate = values => {
-    const errors = {};
-    const requiredFields = ['firstName', 'lastName', 'contact', 'email', 'message'];
-    requiredFields.forEach(field => {
-        if (!values.get(field)) {
-            errors[field] = 'Required';
-        }
-    });
-    if (values.get('email') && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.get('email'))) {
-        errors.email = 'Invalid email address';
-    }
-    return errors;
-};
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
     <TextField
@@ -92,5 +78,4 @@ ContactForm.propTypes = {
 
 export default reduxForm({
     form: 'ContactForm',
-    validate,
 })(ContactForm);

@@ -1,17 +1,14 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import FileInput from './../FileInput';
-import { Field, FieldArray, reduxForm } from 'redux-form/immutable';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
-
-import {
-	TextField,
-	DatePicker
-} from 'redux-form-material-ui';
+import TextField from './../../InputComponents/renderTextField';
+import DatePicker from './../../InputComponents/renderDatePicker';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -22,17 +19,6 @@ const SendButton = styled.div`
     align-self: center;
     margin: 1em;
 `;
-
-const validate = values => {
-	const errors = {};
-	const requiredFields = ['collageName', 'collageWebsite', 'description', 'collageLogo', 'university', 'degree', 'joiningDate', 'leavingDate', 'percentage'];
-	requiredFields.forEach(field => {
-		if (!values.get(field)) {
-			errors[field] = 'Required';
-		}
-	});
-	return errors;
-};
 
 const renderAchievements = ({ fields, meta: { error } }) => (
 	<ul>
@@ -63,7 +49,7 @@ const EducationForm = props => {
 			<Field name="collageName" component={TextField} floatingLabelText="collageName" />
 			<Field name="collageWebsite" component={TextField} floatingLabelText="collageWebsite" />
 			<Field name="description" component={TextField} floatingLabelText="description" />
-			<Field name="collageLogo" component={FileInput} label="collageLogo" multiple={false} accept="image/*" />
+			<Field name="collageLogo" component={FileInput} label="collageLogo" accept="image/*" multiple={false} />
 			<Field name="university" component={TextField} floatingLabelText="university" />
 			<Field name="degree" component={TextField} floatingLabelText="degree" />
 			<Field name="joiningDate" component={DatePicker} format={null} floatingLabelText="joiningDate" />
@@ -94,5 +80,4 @@ EducationForm.propTypes = {
 
 export default reduxForm({
 	form: 'educationForm',
-	validate
 })(EducationForm);

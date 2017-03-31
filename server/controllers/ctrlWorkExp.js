@@ -28,7 +28,7 @@ module.exports.saveWorkExp = (req, res) => {
 			joiningDate: fields.joiningDate,
 			leavingDate: fields.leavingDate,
 			isPressent: fields.isPressent,
-			achievements: JSON.parse(fields.achievements),
+			achievements: fields.achievements.split(","),
 			userId: decodeToken.sub,
 		});
 

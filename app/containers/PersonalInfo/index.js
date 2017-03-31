@@ -1,10 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import PersonalInfoForm from '../../components/PersonalInfoForm';
-
-import { getPersonalInfo, makePersonalInfoLoading, makePersonalInfoError } from './../../selectors/personalInfoSelector';
 import * as personalInfoAction from './../../actions/personalInfoAction';
 
 class PersonalInfo extends Component {
@@ -15,20 +12,20 @@ class PersonalInfo extends Component {
 
 	submitPersonalInfo(values) {
 		const fd = new FormData();
-		Object.keys(values.toJS()).forEach(key => fd.append(key, values.get(key)));
+		Object.keys(values).forEach(key => fd.append(key, values[key]));
 		this.props.personalInfoAction.personalInfoSave(fd);
 	}
 	render() {
 		return (
 			<div>
-				<PersonalInfoForm onSubmit={this.submitPersonalInfo} loading={this.props.loading} />
+				<PersonalInfoForm onSubmit={this.submitPersonalInfo} loading={this.props.personalInfo.loading} />
 			</div>
 		);
 	}
 }
 
 PersonalInfo.propTypes = {
-	loading: PropTypes.bool.isRequired,
+	personalInfo: PropTypes.object.isRequired,
 	personalInfoAction: PropTypes.object.isRequired,
 };
 
@@ -38,10 +35,9 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-const mapStateToProps = createStructuredSelector({
-	personalInfo: getPersonalInfo(),
-	loading: makePersonalInfoLoading(),
-	error: makePersonalInfoError(),
+const mapStateToProps = (state) => ({
+  personalInfo: state.personalInfo,
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalInfo);

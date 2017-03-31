@@ -28,7 +28,7 @@ module.exports.saveEducation = (req, res) => {
 			joiningDate: fields.joiningDate,
 			leavingDate: fields.leavingDate,
 			percentage: fields.percentage,
-			achievements: JSON.parse(fields.achievements),
+			achievements: fields.achievements.split(","),
 			userId: decodeToken.sub,
 		});
 

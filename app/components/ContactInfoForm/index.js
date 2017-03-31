@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
-import {
-  TextField,
-} from 'redux-form-material-ui';
+import TextField from './../../InputComponents/renderTextField';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -16,17 +14,6 @@ const SendButton = styled.div`
     align-self: center;
     margin: 1em;
 `;
-
-const validate = values => {
-	const errors = {};
-	const requiredFields = ['houseDetail', 'city', 'state', 'country', 'pincode','mobile', 'email', 'website'];
-	requiredFields.forEach(field => {
-		if (!values.get(field)) {
-			errors[field] = 'Required';
-		}
-	});
-	return errors;
-};
 
 const ContactInfoForm = props => {
 	const { handleSubmit, pristine, loading } = props;
@@ -67,5 +54,4 @@ ContactInfoForm.propTypes = {
 
 export default reduxForm({
 	form: 'ContactInfoForm',
-	validate
 })(ContactInfoForm);

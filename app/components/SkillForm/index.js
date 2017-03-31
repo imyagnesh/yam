@@ -1,14 +1,11 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import FileInput from './../FileInput';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
-
-import {
-  TextField,
-	Slider
-} from 'redux-form-material-ui';
+import TextField from './../../InputComponents/renderTextField';
+import Slider from './../../InputComponents/renderSlider';
 
 const FormWraper = styled.form`
     flex-direction: column;
@@ -19,17 +16,6 @@ const SendButton = styled.div`
     align-self: center;
     margin: 1em;
 `;
-
-const validate = values => {
-	const errors = {};
-	const requiredFields = ['skillName', 'website', 'description', 'skillLogo', 'ratting'];
-	requiredFields.forEach(field => {
-		if (!values.get(field)) {
-			errors[field] = 'Required';
-		}
-	});
-	return errors;
-};
 
 const SkillForm = props => {
 	const { handleSubmit, pristine, loading } = props;
@@ -64,5 +50,4 @@ SkillForm.propTypes = {
 
 export default reduxForm({
 	form: 'skillForm',
-	validate
 })(SkillForm);

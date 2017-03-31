@@ -1,10 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import EducationForm from '../../components/EducationForm';
-
-import { getEducation, makeEducationLoading, makeEducationError } from './../../selectors/educationSelector';
 import * as educationAction from './../../actions/educationAction';
 
 class Education extends Component {
@@ -14,31 +11,21 @@ class Education extends Component {
 	}
 
 	submitEducation(values) {
-		console.log(values.toJSON());
 		const fd = new FormData();
-		Object.keys(values.toJS()).forEach(key => {
-			const value  = values.get(key);
-			if (value) {
-				if (key === 'achievements') {
-					fd.append(key, JSON.stringify(value));
-				} else {
-					fd.append(key, value);
-				}
-			}
-		});
+		Object.keys(values).forEach(key => fd.append(key, values[key]));
 		this.props.educationAction.educationSave(fd);
 	}
 	render() {
 		return (
 			<div>
-				<EducationForm onSubmit={this.submitEducation} loading={this.props.loading} />
+				<EducationForm onSubmit={this.submitEducation} loading={this.props.education.loading} />
 			</div>
 		);
 	}
 }
 
 Education.propTypes = {
-	loading: PropTypes.bool.isRequired,
+	education: PropTypes.object.isRequired,
 	educationAction: PropTypes.object.isRequired,
 };
 
@@ -48,10 +35,9 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-const mapStateToProps = createStructuredSelector({
-	education: getEducation(),
-	loading: makeEducationLoading(),
-	error: makeEducationError(),
+const mapStateToProps = (state) => ({
+  education: state.education,
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Education);
