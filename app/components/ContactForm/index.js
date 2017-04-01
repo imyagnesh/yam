@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import { Field, reduxForm } from 'redux-form';
-import TextField from 'material-ui/TextField';
+import TextField from './../../InputComponents/renderTextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
 
@@ -22,37 +22,23 @@ const WrapperDiv = styled.div`
     }
 `;
 
-
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-    <TextField
-        hintText={label}
-        floatingLabelText={label}
-        errorText={touched && error}
-        errorStyle={{ display: 'none' }}
-        fullWidth
-        {...input}
-        {...custom}
-        />
-);
-
-
 const ContactForm = (({ messages, handleSubmit, pristine, submitting }) =>
     <FormWraper onSubmit={handleSubmit}>
         <WrapperDiv>
-            <Field name="firstName" component={renderTextField} label="First Name" />
+            <Field name="firstName" component={TextField} floatingLabelText="First Name" fullWidth />
             <div style={{ flexBasis: '5%' }} />
-            <Field name="lastName" component={renderTextField} label="Last Name" />
+            <Field name="lastName" component={TextField} floatingLabelText="Last Name" fullWidth />
         </WrapperDiv>
         <WrapperDiv>
-            <Field name="contact" component={renderTextField} label="Mobile Number" />
+            <Field name="contact" component={TextField} floatingLabelText="Mobile Number" fullWidth/>
             <div style={{ flexBasis: '5%' }} />
-            <Field name="email" component={renderTextField} label="Email Address" />
+            <Field name="email" component={TextField} floatingLabelText="Email Address" fullWidth />
         </WrapperDiv>
         <div>
-            <Field name="subject" component={renderTextField} label="Subject" />
+            <Field name="subject" component={TextField} floatingLabelText="Subject" fullWidth/>
         </div>
         <div>
-            <Field name="message" component={renderTextField} label="Message" rows={3} multiLine />
+            <Field name="message" component={TextField} floatingLabelText="Message" rows={3} multiLine fullWidth />
         </div>
         <SendButton>
             <RaisedButton

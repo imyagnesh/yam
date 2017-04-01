@@ -33,6 +33,7 @@ FileInput.propTypes = {
 	name: PropTypes.string,
 	input: PropTypes.object,
 	meta: PropTypes.object,
+	multiple: PropTypes.bool,
 	custom: PropTypes.array,
 };
 

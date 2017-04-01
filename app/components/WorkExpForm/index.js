@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import FileInput from './../FileInput';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
@@ -8,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import TextField from './../../InputComponents/renderTextField';
+import FileInput from './../../InputComponents/renderFileInput';
 import DatePicker from './../../InputComponents/renderDatePicker';
 import Checkbox from './../../InputComponents/renderCheckbox';
 

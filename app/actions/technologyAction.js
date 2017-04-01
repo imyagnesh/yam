@@ -19,7 +19,7 @@ export function loadTechnology() {
 		dispatch(technologyLoadRequest());
 		return TechnologyApi.getTechnology().then((technology) => {
 			if (technology.success) {
-				dispatch(technologyLoadSuccess(technology));
+				dispatch(technologyLoadSuccess(technology.data));
 			}
 		}).catch((error) => {
 			dispatch(technologyLoadFail(error));
