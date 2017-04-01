@@ -10,10 +10,7 @@ const ProjectSchema = new mongoose.Schema({
 	website: String,
 	myRole: String,
 	imgs: [{ data: Buffer, contentType: String }],
-	video: {
-		fileName: String,
-		resumeId: mongoose.Schema.Types.ObjectId,
-	},
+	video: { data: Buffer, contentType: String },
 	userId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'

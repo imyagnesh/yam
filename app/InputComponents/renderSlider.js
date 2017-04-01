@@ -3,11 +3,12 @@ import Slider from 'material-ui/Slider';
 
 const renderSlider = props => {
 	const { input, meta, ...custom } = props;
+	const { value, onChange } = input;
 	return (
 		<Slider
-			{...input}
+			value={value}
 			onChange={(event, value) => {
-				input.onChange(value);
+				onChange(value);
 			}}
 			{...custom}
 		/>

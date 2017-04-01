@@ -7,6 +7,7 @@ const ctrlContactInfo = require('../controllers/ctrlContactInfo');
 const ctrlEducation = require('../controllers/ctrlEducation');
 const ctrlSkill = require('../controllers/ctrlSkill');
 const ctrlWorkExp = require('../controllers/ctrlWorkExp');
+const ctrlProject = require('../controllers/ctrlProject');
 
 router.post('/savePersonalInfo', ctrlPersonalInfo.savePersonalInfo);
 router.post('/saveAboutMe', ctrlAboutMe.saveAboutMe);
@@ -14,6 +15,7 @@ router.post('/saveContactInfo', ctrlContactInfo.saveContactInfo);
 router.post('/saveEducation', ctrlEducation.saveEducation);
 router.post('/saveSkill', ctrlSkill.saveSkill);
 router.post('/saveWorkExp', ctrlWorkExp.saveWorkExp);
+router.post('/saveProject', ctrlProject.saveProject);
 
 
 router.get('/getPersonalInfo', ctrlPersonalInfo.getPersonalInfo);
@@ -22,5 +24,6 @@ router.get('/getContactInfo', ctrlContactInfo.getContactInfo);
 router.get('/getEducation', ctrlEducation.getEducation);
 router.get('/getWorkExp', ctrlWorkExp.getWorkExp);
 router.get('/getSkills', ctrlSkill.getSkills);
+router.get('/getProjects', ctrlProject.getProjects);
 
 module.exports = router;
