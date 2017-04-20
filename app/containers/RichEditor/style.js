@@ -65,7 +65,7 @@ export const EditorControls = styled.div`
     user-select: none;
 `;
 
-export const EditorStledButton = styled.div`
+export const EditorStyledButton = styled.div`
     color: ${props => props.active ? '#5890ff' : '#999'};
     cursor: pointer;
     margin-right: 16px;

@@ -1,6 +1,6 @@
 import { EditorState, RichUtils, Modifier } from 'draft-js';
 
-export default function (editorState, toggleddditionalStyle, customStyleMap) {
+export default function (editorState, toggleAdditionalStyle, customStyleMap) {
 	const selection = editorState.getSelection();
 
 	// Let's just allow one color at a time. Turn off all active colors.
@@ -25,10 +25,10 @@ export default function (editorState, toggleddditionalStyle, customStyleMap) {
 	}
 
 	// If the color is being toggled on, apply it.
-	if (!currentStyle.has(toggleddditionalStyle)) {
+	if (!currentStyle.has(toggleAdditionalStyle)) {
 		nextEditorState = RichUtils.toggleInlineStyle(
 			nextEditorState,
-			toggleddditionalStyle
+			toggleAdditionalStyle
 		);
 	}
 	return nextEditorState;

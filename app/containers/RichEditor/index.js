@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, RichUtils, Modifier } from 'draft-js';
+import { Editor, EditorState, RichUtils } from 'draft-js';
 import getBlockAlignment from './getBlockAlignment';
 import textAlignmentModifier from './textAlignmentModifier';
 import { Root, EditorWrapper } from './style';
@@ -15,7 +15,7 @@ import CodeIcon from 'material-ui/svg-icons/action/code';
 
 import SelectInput from './selectListInput';
 import ButtonInput from './iconButtonInput';
-import ChnageColor from './chnageColor';
+import ChangeColor from './changeColor';
 
 const menuItems = [
 	{ label: 'Normal', style: 'unstyled' },
@@ -61,7 +61,7 @@ class RichEditor extends Component {
 		this.toggleTextAlignment = this.toggleTextAlignment.bind(this);
 		this.toggleBlockType = (type) => this._toggleBlockType(type);
 		this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
-		this.toggleAdditionalStyle = (toggleddditionalStyle) => this._toggleAdditionalStyle(toggleddditionalStyle);
+		this.toggleAdditionalStyle = (toggleAdditionalStyle) => this._toggleAdditionalStyle(toggleAdditionalStyle);
 	}
 
 	getBlockStyle(block) {
@@ -109,12 +109,11 @@ class RichEditor extends Component {
 	}
 
 	toggleTextAlignment(style) {
-		console.log(style);
 		this.onChange(textAlignmentModifier(this.state.editorState, style, ["left", "center", "right"].filter((i) => i !== style)));
 	}
 
-	_toggleAdditionalStyle(toggleddditionalStyle) {
-		this.onChange(ChnageColor(this.state.editorState, toggleddditionalStyle, customStyleMap));
+	_toggleAdditionalStyle(toggleAdditionalStyle) {
+		this.onChange(ChangeColor(this.state.editorState, toggleAdditionalStyle, customStyleMap));
 	}
 
 	render() {
