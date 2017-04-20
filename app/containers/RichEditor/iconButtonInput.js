@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 
 const IconButtonInput = props => {
-	const { child, onToggle, inlineStyle, currentStyle } = props;
+	const { child, onToggle, inlineStyle, active } = props;
 	return (
 		<IconButton
-			style={currentStyle.has(inlineStyle) ? { background: '#ddd' } : {}}
+			style={active ? { background: '#ddd' } : {}}
 			onTouchTap={() => onToggle(inlineStyle)}
 		>
 			{child}
@@ -17,7 +17,7 @@ IconButtonInput.propTypes = {
 	child: PropTypes.element.isRequired,
 	onToggle: PropTypes.func.isRequired,
 	inlineStyle: PropTypes.string.isRequired,
-	currentStyle: PropTypes.object.isRequired,
+	active: PropTypes.bool.isRequired,
 };
 
 export default IconButtonInput;

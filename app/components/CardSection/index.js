@@ -4,19 +4,18 @@ import { Card, CardMedia, CardTitle, CardHeader } from 'material-ui/Card';
 import ReduxLogo from '../../common/images/redux-logo.svg';
 
 const CardWrapper = styled(Card) `
-    min-width: 14.8em;
-    margin: 10px;
+    margin: ${props => props.data ? '10px 10px 10px 0' : '10px'};
 `;
 
-const CardSection = ({cardTitle, cardSubTitle, withCardHeader, cardHeaderSubTitle }) => {
+const CardSection = ({ isFirstCard, cardTitle, cardSubTitle, withCardHeader, cardHeaderSubTitle }) => {
     return (
-        <CardWrapper containerStyle={{ padding: 0 }}>
+        <CardWrapper data={isFirstCard} containerStyle={{ padding: 0, width: 235 }}>
             {withCardHeader && <CardHeader
                 subtitle={cardHeaderSubTitle}
                 subtitleStyle={{ fontSize: 16 }}
                 style={{ padding: 12 }}
                 textStyle={{ padding: 0 }}
-                />}
+            />}
             <CardMedia mediaStyle={{ backgroundColor: 'rgb(188, 188, 188)' }}>
                 <img src={ReduxLogo} height={withCardHeader ? 202 : '100%'} />
             </CardMedia>
@@ -26,6 +25,7 @@ const CardSection = ({cardTitle, cardSubTitle, withCardHeader, cardHeaderSubTitl
 };
 
 CardSection.propTypes = {
+    isFirstCard: PropTypes.bool.isRequired,
     cardTitle: PropTypes.node.isRequired,
     cardSubTitle: PropTypes.node.isRequired,
     cardHeaderSubTitle: PropTypes.node,

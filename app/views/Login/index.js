@@ -1,16 +1,15 @@
 import React, { Component, PropTypes } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Paper from 'material-ui/Paper';
 import { LoginForm } from '../../components';
 import * as loginActions from './../../actions/loginActions';
 
-const style = {
-	height: 400,
-	width: 400,
-	textAlign: 'center',
-	display: 'inline-block',
-};
+const AppWrapper = styled.div`
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+`;
 
 class Login extends Component {
 	constructor(props) {
@@ -24,9 +23,9 @@ class Login extends Component {
 
 	render() {
 		return (
-			<Paper style={style} zDepth={1}>
+			<AppWrapper>
 				<LoginForm onSubmit={this.login} />
-			</Paper>
+			</AppWrapper>
 		);
 	}
 }

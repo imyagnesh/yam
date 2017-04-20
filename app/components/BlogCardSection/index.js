@@ -6,7 +6,7 @@ import ReduxLogo from '../../common/images/redux-logo.svg';
 
 const CardWrapper = styled(Card) `
     min-width: 14.8em;
-    margin: 10px;
+    margin: ${props => props.data ? '10px 10px 10px 0' : '10px'};
 `;
 
 const CardTextWrapper = styled(CardText) `
@@ -20,9 +20,9 @@ const CardTextWrapper = styled(CardText) `
   margin: 0 12px;
 `;
 
-const BlogCardSection = ({cardTitle}) => {
+const BlogCardSection = ({isFirstCard, cardTitle}) => {
     return (
-        <CardWrapper containerStyle={{ padding: 0 }}>
+        <CardWrapper data={isFirstCard} containerStyle={{ padding: 0 }}>
             <CardMedia mediaStyle={{ backgroundColor: 'rgb(188, 188, 188)' }}>
                 <img src={ReduxLogo} height="150" />
             </CardMedia>
@@ -38,6 +38,7 @@ const BlogCardSection = ({cardTitle}) => {
 };
 
 BlogCardSection.propTypes = {
+    isFirstCard: PropTypes.bool.isRequired,
     cardTitle: PropTypes.node.isRequired,
 };
 

@@ -1,11 +1,18 @@
 import React, { Component, PropTypes } from 'react';
+import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+
+const AppWrapper = styled.div`
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+`;
 
 class Admin extends Component {
 	render() {
 		return (
-			<div>
+			<AppWrapper>
 				<Helmet
 					titleTemplate="%s - React.js Boilerplate"
 					defaultTitle="React.js Boilerplate"
@@ -14,7 +21,7 @@ class Admin extends Component {
 					]}
 				/>
 				{this.props.children}
-			</div>
+			</AppWrapper>
 		);
 	}
 }

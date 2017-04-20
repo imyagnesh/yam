@@ -12,8 +12,10 @@ class AboutMe extends Component {
                     posterImg={coverImage}
                     headerText={messages.headerText}
                     subHeaderText={messages.subHeaderText}
-                    />
+                />
+                <div>
                     <RichEditor />
+                </div>
             </div>
         );
     }

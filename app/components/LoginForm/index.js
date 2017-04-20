@@ -6,15 +6,17 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import TextField from './../../InputComponents/renderTextField';
 
 const FormWraper = styled.form`
-    flex-direction: column;
     display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
 `;
 
 const SendButton = styled.div`
     align-self: center;
     margin: 1em;
 `;
-
 
 const LoginForm = props => {
 	const { handleSubmit, pristine, submitting } = props;
@@ -45,6 +47,6 @@ LoginForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'loginForm',  // a unique identifier for this form
+	form: 'loginForm',  // a unique identifier for this form
 })(LoginForm);
 

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import Paper from 'material-ui/Paper';
-import Avatar from 'material-ui/Avatar';
+// import Paper from 'material-ui/Paper';
+// import Avatar from 'material-ui/Avatar';
 
 const ContentWrapper = styled.div`
     max-width: 1024px;
@@ -19,7 +19,7 @@ const ContentWrapper = styled.div`
 
 
 
-const PaperWrapper = styled(Paper) `
+const PaperWrapper = styled.div`
     height: 380px;
     display: flex;
     flex-direction: row;
@@ -30,7 +30,6 @@ const PaperWrapper = styled(Paper) `
 
 const InerDiv = styled.div`
     min-width:  260px;
-    margin: 0 10px;
     flex-wrap: wrap;
 `;
 
@@ -56,7 +55,7 @@ const ImageDiv = styled.div `
 const AboutMe = props => {
     return (
         <ContentWrapper>
-            <PaperWrapper zDepth={1}>
+            <PaperWrapper>
                 <FrontDiv>Fromt</FrontDiv>
                 <ImageDiv>
                     Image

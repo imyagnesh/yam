@@ -6,11 +6,11 @@ import IconButton from 'material-ui/IconButton';
 import NavigationLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import NavigationRight from 'material-ui/svg-icons/navigation/chevron-right';
 import { smoothScroll } from '../../utils/scrollSmooth';
-import isMobile from '../../utils/detectMobile';
 
 const HScrollWrapper = styled.div`
 display: flex;
 flex-flow: row nowrap;
+margin: 0 10px;
 justify-content: space-between;
   overflow-x: scroll;
   overflow-y: hidden;

@@ -22,7 +22,7 @@ export const EditorWrapper = styled.div`
         padding: 15px;
         min-height: 100px;
     };
-    & .RichEditor-blockquote {
+    & blockquote {
         border-left: 5px solid #eee;
         color: #666;
         font-family: 'Hoefler Text', 'Georgia', serif;
@@ -30,25 +30,32 @@ export const EditorWrapper = styled.div`
         margin: 16px 0;
         padding: 10px 20px;
     };
-    & .RichEditor-code-block {
-        font-family: "Inconsolata", "Menlo", "Consolas", monospace;
-        font-size: 16px;
-        padding: 2px;
-    };
-    & .RichEditor-strike-through {
-        text-decoration: line-through;
-    }
     & .public-DraftStyleDefault-pre {
         background-color: rgba(0, 0, 0, 0.05);
         font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
         font-size: 16px;
         padding: 20px;
-    }
+    };
+    & .alignment--left {
+        & .public-DraftStyleDefault-block {
+            text-align: left;
+        };
+    };
+    & .alignment--right {
+        & .public-DraftStyleDefault-block {
+            text-align: right;
+        };
+    };
+    & .alignment--center {
+        & .public-DraftStyleDefault-block {
+            text-align: center;
+        };
+    };
     & .public-DraftEditorPlaceholder-root {
 				color: #9197a3;
     		position: absolute;
     		z-index: 0;
-    }
+    };
 `;
 
 export const EditorControls = styled.div`
