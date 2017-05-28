@@ -11,6 +11,7 @@ import TextField from './../../InputComponents/renderTextField';
 const FormWraper = styled.form`
     flex-direction: column;
     display: flex;
+		margin: 10px;
 `;
 
 const SendButton = styled.div`
@@ -22,11 +23,14 @@ const ProjectForm = props => {
 	const { handleSubmit, pristine, technology } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="projectName" component={TextField} floatingLabelText="projectName" />
-			<Field name="Description" component={TextField} floatingLabelText="Description" />
-			<Field name="website" component={TextField} floatingLabelText="website" />
-			<Field name="myRole" component={TextField} floatingLabelText="myRole" />
-			<Field name="technologyUsed" component={SelectField} multiple={true} floatingLabelText="technology Used">
+			<SendButton>
+				<h2>Project</h2>
+			</SendButton>
+			<Field name="projectName" component={TextField} floatingLabelText="projectName" fullWidth />
+			<Field name="Description" component={TextField} floatingLabelText="Description" rows={3} fullWidth multiLine />
+			<Field name="website" component={TextField} floatingLabelText="website" fullWidth />
+			<Field name="myRole" component={TextField} floatingLabelText="myRole" rows={3} fullWidth multiLine />
+			<Field name="technologyUsed" component={SelectField} multiple={true} floatingLabelText="technology Used" fullWidth>
 				{
 					technology.map((value) =>
 						<MenuItem

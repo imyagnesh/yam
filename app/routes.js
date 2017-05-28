@@ -27,82 +27,29 @@ export default function createRoutes(store) {
       component: App,
       indexRoute: {
         getComponent(nextState, cb) {
-          System.import('views/Home')
-            .then(loadModule(cb))
-            .catch(errorLoading);
-        },
-      },
-      childRoutes: [
-        {
-          path: '/',
-          name: 'home',
-          getComponent(nextState, cb) {
-            System.import('views/Home')
-              .then(loadModule(cb))
-              .catch(errorLoading);
-          },
-        },
-        {
-          path: '/blog',
-          name: 'blog',
-          getComponent(nextState, cb) {
-            System.import('views/Blog')
-              .then(loadModule(cb))
-              .catch(errorLoading);
-          },
-        },
-        {
-          path: '/resume',
-          name: 'resume',
-          getComponent(nextState, cb) {
-            System.import('views/Resume')
-              .then(loadModule(cb))
-              .catch(errorLoading);
-          },
-        },
-        {
-          path: '/about',
-          name: 'about',
-          getComponent(nextState, cb) {
-            System.import('views/AboutMe')
-              .then(loadModule(cb))
-              .catch(errorLoading);
-          },
-        },
-        {
-          path: '/contact',
-          name: 'contact',
-          getComponent(nextState, cb) {
-            System.import('views/Contact')
-              .then(loadModule(cb))
-              .catch(errorLoading);
-          },
-        },
-        {
-          path: '/portfolio',
-          name: 'portfolio',
-          getComponent(nextState, cb) {
-            System.import('views/Portfolio')
-              .then(loadModule(cb))
-              .catch(errorLoading);
-          },
-        },
-      ],
-    },
-    {
-      path: '/admin',
-      component: Admin,
-      indexRoute: {
-        getComponent(nextState, cb) {
           const importModules = Promise.all([
-            import('./reducers/loginReducer'),
-      import('./views/Login'),
+            import('./reducers/personalInfoReducer'),
+            import('./reducers/aboutMeReducer'),
+            import('./reducers/contactInfoReducer'),
+            import('./reducers/skillReducer'),
+            import('./reducers/educationReducer'),
+            import('./reducers/workExpReducer'),
+            import('./reducers/technologyReducer'),
+            import('./reducers/projectReducer'),
+            import('./views/Home'),
   ]);
 
   const renderRoute = loadModule(cb);
 
-  importModules.then(([reducer, component]) => {
-    injectReducer('login', reducer.default);
+  importModules.then(([personalInfoReducer, aboutMeReducer, contactInfo, skill, education, workExp, technology, project, component]) => {
+    injectReducer('personalInfo', personalInfoReducer.default);
+    injectReducer('aboutMe', aboutMeReducer.default);
+    injectReducer('contactInfo', contactInfo.default);
+    injectReducer('skill', skill.default);
+    injectReducer('education', education.default);
+    injectReducer('workExp', workExp.default);
+    injectReducer('technology', technology.default);
+    injectReducer('project', project.default);
     renderRoute(component);
   });
 
@@ -111,10 +58,79 @@ export default function createRoutes(store) {
       },
 childRoutes: [
   {
-    path: '/dashboard',
-    name: 'dashboard',
+    path: '/blog',
+    name: 'blog',
+    getComponent(nextState, cb) {
+
+      System.import('views/Blog')
+        .then(loadModule(cb))
+        .catch(errorLoading);
+    },
+  },
+  {
+    path: '/resume',
+    name: 'resume',
+    getComponent(nextState, cb) {
+      System.import('views/Resume')
+        .then(loadModule(cb))
+        .catch(errorLoading);
+    },
+  },
+  {
+    path: '/about',
+    name: 'about',
+    getComponent(nextState, cb) {
+      System.import('views/AboutMe')
+        .then(loadModule(cb))
+        .catch(errorLoading);
+    },
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    getComponent(nextState, cb) {
+      System.import('views/Contact')
+        .then(loadModule(cb))
+        .catch(errorLoading);
+    },
+  },
+  {
+    path: '/portfolio',
+    name: 'portfolio',
+    getComponent(nextState, cb) {
+      System.import('views/Portfolio')
+        .then(loadModule(cb))
+        .catch(errorLoading);
+    },
+  },
+],
+    },
+{
+  path: '/admin',
+    component: Admin,
+      indexRoute: {
     getComponent(nextState, cb) {
       const importModules = Promise.all([
+            import('./reducers/loginReducer'),
+      import('./views/Login'),
+  ]);
+
+      const renderRoute = loadModule(cb);
+
+      importModules.then(([reducer, component]) => {
+        injectReducer('login', reducer.default);
+        renderRoute(component);
+      });
+
+      importModules.catch(errorLoading);
+    },
+  },
+  childRoutes: [
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
             import('./reducers/personalInfoReducer'),
             import('./reducers/aboutMeReducer'),
             import('./reducers/contactInfoReducer'),
@@ -124,24 +140,24 @@ childRoutes: [
             import('./reducers/technologyReducer'),
             import('./reducers/projectReducer'),
             import('./views/Dashboard'),
-]);
+  ]);
 
-const renderRoute = loadModule(cb);
+  const renderRoute = loadModule(cb);
 
-importModules.then(([personalInfoReducer, aboutMeReducer, contactInfo, skill, education, workExp, technology, project, component]) => {
-  injectReducer('personalInfo', personalInfoReducer.default);
-  injectReducer('aboutMe', aboutMeReducer.default);
-  injectReducer('contactInfo', contactInfo.default);
-  injectReducer('skill', skill.default);
-  injectReducer('education', education.default);
-  injectReducer('workExp', workExp.default);
-  injectReducer('technology', technology.default);
-  injectReducer('project', project.default);
-  renderRoute(component);
-});
+  importModules.then(([personalInfoReducer, aboutMeReducer, contactInfo, skill, education, workExp, technology, project, component]) => {
+    injectReducer('personalInfo', personalInfoReducer.default);
+    injectReducer('aboutMe', aboutMeReducer.default);
+    injectReducer('contactInfo', contactInfo.default);
+    injectReducer('skill', skill.default);
+    injectReducer('education', education.default);
+    injectReducer('workExp', workExp.default);
+    injectReducer('technology', technology.default);
+    injectReducer('project', project.default);
+    renderRoute(component);
+  });
 
-importModules.catch(errorLoading);
-        },
+  importModules.catch(errorLoading);
+},
         }
       ]
     },

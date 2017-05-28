@@ -6,9 +6,11 @@ const SelectInput = props => {
 	const { blockType, handleChange, menuItems } = props;
 	return (
 		<SelectField
-			floatingLabelText="Frequency"
 			value={blockType}
 			onChange={(event, index, value) => handleChange(value)}
+			autoWidth={true}
+			underlineStyle={{ display: 'none' }}
+			style={{ width: 'auto'}}
 		>
 			{
 				menuItems.map((item, i) => <MenuItem key={i} value={item.style} primaryText={item.label} />)

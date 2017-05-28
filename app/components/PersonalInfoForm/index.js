@@ -9,6 +9,7 @@ import TextField from './../../InputComponents/renderTextField';
 const FormWraper = styled.form`
     flex-direction: column;
     display: flex;
+		margin: 10px;
 `;
 
 const SendButton = styled.div`
@@ -20,9 +21,12 @@ const PersonalInfoForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="firstName" component={TextField} floatingLabelText="First Name" />
-			<Field name="lastName" component={TextField} floatingLabelText="Last Name" />
-			<Field name="designation" component={TextField} floatingLabelText="Designation" />
+			<SendButton>
+				<h2>Personal Info</h2>
+			</SendButton>
+			<Field name="firstName" component={TextField} floatingLabelText="First Name" fullWidth />
+			<Field name="lastName" component={TextField} floatingLabelText="Last Name" fullWidth />
+			<Field name="designation" component={TextField} floatingLabelText="Designation" fullWidth />
 			<Field name="smallImage" component={FileInput} label="Small Image" multiple={false} accept="image/*" />
 			<Field name="largeImage" component={FileInput} label="Large Image" multiple={false} accept="image/*" />
 			<Field name="resume" component={FileInput} label="Resume" multiple={false} accept="application/pdf" />
@@ -31,7 +35,7 @@ const PersonalInfoForm = props => {
 					style={{ height: '50px', minWidth: '150px' }}
 					labelStyle={{ lineHeight: '50px' }}
 					secondary
-					label={loading?'Sending..' : 'Send'}
+					label={loading ? 'Sending..' : 'Send'}
 					labelPosition="before"
 					type="submit"
 					icon={<ContentSend />}

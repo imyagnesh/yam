@@ -36,7 +36,5 @@ module.exports.saveContactInfo = (req, res) => {
 };
 
 module.exports.getContactInfo = (req, res) => {
-	const decodeToken = jwt.verify(req.headers.authorization.split(' ')[1], config.jwtSecret);
-	const query = { userId: decodeToken.sub };
-	findOne(ContactInfo, query, res);
+	findOne(ContactInfo, {}, res);
 };

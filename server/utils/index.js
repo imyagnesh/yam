@@ -1,4 +1,10 @@
+const mongoose = require('mongoose');
 const validator = require('validator');
+var Grid = require('gridfs-stream');
+Grid.mongo = mongoose.mongo;
+var gfs = new Grid(mongoose.connection.db);
+var fs = require('fs');
+const logger = require('../../logger');
 
 module.exports = {
 
@@ -140,6 +146,62 @@ module.exports = {
 				success: true,
 				message: "Personal Information Saved.",
 				data: data,
+			});
+		});
+	},
+
+	uploadFile: function (fileToUpload) {
+		return new Promise(function (resolve, reject) {
+			var writeStream = gfs.createWriteStream({
+				filename: fileToUpload.name,
+				content_type: fileToUpload.type
+			});
+
+			fs.createReadStream(fileToUpload.path).pipe(writeStream);
+
+			writeStream.on('close', function (file) {
+				resolve(file._id);
+			});
+			writeStream.on("error", reject); // don't forget this!
+		});
+
+
+	},
+
+	readFile: function (id) {
+		return new Promise(function (resolve, reject) {
+			gfs.findOne({
+				_id: id,
+			}, function (err, file) {
+				if (err) logger.error(`GridFS read file error: ${err}, ID: ${id}`);
+				//write content to file system
+				var data = [];
+				//read from mongodb
+				var readstream = gfs.createReadStream({
+					_id: file._id,
+				});
+
+				readstream.on('data', function (chunk) {
+					data.push(chunk);
+				});
+
+				readstream.on('end', function () {
+					data = Buffer.concat(data);
+					resolve('data:' + file.contentType + ';base64,' + Buffer(data).toString('base64'));
+				});
+
+				readstream.on("error", reject);
+			});
+		});
+	},
+
+	deleteFile: function (id) {
+		return new Promise(function (resolve, reject) {
+			gfs.remove({
+				_id: id
+			}, function (err) {
+				if (err) reject(err);
+				resolve();
 			});
 		});
 	}

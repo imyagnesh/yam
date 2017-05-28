@@ -5,7 +5,7 @@ class TechnologyApi {
 		return new Promise((resolve, reject) => {
 			request('/publicApi/getTechnology')
 				.then(json => resolve(Object.assign([], json)))
-				.catch(err => reject(Object.assign([], err)));
+				.catch(err => reject(Object.assign({}, err)));
 		});
 	}
 }

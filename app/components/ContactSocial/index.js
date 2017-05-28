@@ -38,9 +38,6 @@ const ContactSocial = props => {
                 <FloatingActionButton mini secondary style={{ margin: '8px' }} children={<TwitterIcon />} />
                 <FloatingActionButton mini secondary style={{ margin: '8px' }} children={<InstagramIcon />} />
                 <FloatingActionButton mini secondary style={{ margin: '8px' }} children={<LinkedinIcon />} />
-                {
-                    // <FloatingActionButton mini secondary style={{ margin: '10px' }} children={<i className={[baseStyle.fontIcon, 'icon-github-circled'].join(' ')}>&#xf09b;</i>} />
-                }
                 <FloatingActionButton mini secondary style={{ margin: '10px' }} children={<MailIcon />} />
             </NavWrapper>
         </Wrapper>

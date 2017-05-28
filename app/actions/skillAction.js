@@ -1,5 +1,38 @@
 import SkillApi from './../api/skillApi';
-import { SKILL_SAVE_REQUEST, SKILL_SAVE_SUCCESS, SKILL_SAVE_FAIL } from './../constants';
+import {
+  SKILL_SAVE_REQUEST,
+  SKILL_SAVE_SUCCESS,
+  SKILL_SAVE_FAIL,
+  SKILL_LOAD_REQUEST,
+  SKILL_LOAD_SUCCESS,
+  SKILL_LOAD_FAIL
+} from './../constants';
+
+export function skillLoadRequest() {
+  return { type: SKILL_LOAD_REQUEST };
+}
+
+export function skillLoadSuccess(skill) {
+  return { type: SKILL_LOAD_SUCCESS, skill };
+}
+
+export function skillLoadFail(error) {
+  return { type: SKILL_LOAD_FAIL, error };
+}
+
+export function skillLoad() {
+  return (dispatch) => {
+    dispatch(skillLoadRequest());
+    return SkillApi.getSkills().then((skill) => {
+      if (skill.success) {
+        dispatch(skillLoadSuccess(skill.data));
+      }
+    }).catch((error) => {
+      dispatch(skillLoadFail(error));
+    });
+  };
+}
+
 
 export function skillSaveRequest() {
   return { type: SKILL_SAVE_REQUEST };

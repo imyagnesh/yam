@@ -5,7 +5,7 @@ const DetailSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'address is required.'],
 	},
-	logo: { data: Buffer, contentType: String },
+	logo: mongoose.Schema.Types.ObjectId,
 	website: {
 		type: String,
 		required: [true, 'email is required.'],

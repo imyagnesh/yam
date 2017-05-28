@@ -17,13 +17,4 @@ router.post('/saveSkill', ctrlSkill.saveSkill);
 router.post('/saveWorkExp', ctrlWorkExp.saveWorkExp);
 router.post('/saveProject', ctrlProject.saveProject);
 
-
-router.get('/getPersonalInfo', ctrlPersonalInfo.getPersonalInfo);
-router.get('/getAboutMe/:language', ctrlAboutMe.getAboutMe);
-router.get('/getContactInfo', ctrlContactInfo.getContactInfo);
-router.get('/getEducation', ctrlEducation.getEducation);
-router.get('/getWorkExp', ctrlWorkExp.getWorkExp);
-router.get('/getSkills', ctrlSkill.getSkills);
-router.get('/getProjects', ctrlProject.getProjects);
-
 module.exports = router;

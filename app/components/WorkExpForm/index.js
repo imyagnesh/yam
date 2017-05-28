@@ -14,6 +14,7 @@ import Checkbox from './../../InputComponents/renderCheckbox';
 const FormWraper = styled.form`
     flex-direction: column;
     display: flex;
+		margin: 10px;
 `;
 
 const SendButton = styled.div`
@@ -47,15 +48,18 @@ const WorkExpForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="companyName" component={TextField} floatingLabelText="companyName" />
-			<Field name="companyWebsite" component={TextField} floatingLabelText="companyWebsite" />
-			<Field name="description" component={TextField} floatingLabelText="description" />
+			<SendButton>
+				<h2>Work Experience</h2>
+			</SendButton>
+			<Field name="companyName" component={TextField} floatingLabelText="companyName" fullWidth/>
+			<Field name="companyWebsite" component={TextField} floatingLabelText="companyWebsite" fullWidth/>
+			<Field name="description" component={TextField} floatingLabelText="description" rows={3} fullWidth multiLine />
 			<Field name="companyLogo" component={FileInput} label="companyLogo" multiple={false} accept="image/*" />
-			<Field name="designation" component={TextField} floatingLabelText="designation" />
-			<Field name="role" component={TextField} floatingLabelText="role" />
-			<Field name="joiningDate" component={DatePicker} format={null} floatingLabelText="joiningDate" />
-			<Field name="leavingDate" component={DatePicker} format={null} floatingLabelText="leavingDate" />
-			<Field name="isPressent" component={Checkbox} label="isPressent"/>
+			<Field name="designation" component={TextField} floatingLabelText="designation" fullWidth/>
+			<Field name="role" component={TextField} floatingLabelText="role" rows={3} fullWidth multiLine />
+			<Field name="joiningDate" component={DatePicker} format={null} floatingLabelText="joiningDate" fullWidth/>
+			<Field name="leavingDate" component={DatePicker} format={null} floatingLabelText="leavingDate" fullWidth/>
+			<Field name="isPressent" component={Checkbox} label="isPressent" />
 			<FieldArray name="achievements" component={renderAchievements} />
 			<SendButton>
 				<RaisedButton

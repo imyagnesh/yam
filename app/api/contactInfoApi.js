@@ -18,16 +18,9 @@ class ContactInfoApi {
 	}
 	static getContactInfo() {
 		return new Promise((resolve, reject) => {
-			const token = sessionStorage.getItem('token');
-			request('/api/getContactInfo', {
-				method: 'get',
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-					authorization: `bearer ${token}`
-				},
-			}).then(json => resolve(Object.assign([], json)))
-				.catch(err => reject(Object.assign([], err)));
+			request('/publicApi/getContactInfo')
+				.then(json => resolve(Object.assign({}, json)))
+				.catch(err => reject(Object.assign({}, err)));
 		});
 	}
 }

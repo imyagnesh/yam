@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-// import Paper from 'material-ui/Paper';
-// import Avatar from 'material-ui/Avatar';
+import Paper from 'material-ui/Paper';
+import AboutMeBack from '../AboutMeBack';
+import AboutMeFront from '../AboutMeFront';
+import ReduxLogo from '../../common/images/redux-logo.svg';
 
 const ContentWrapper = styled.div`
     max-width: 1024px;
@@ -11,16 +13,8 @@ const ContentWrapper = styled.div`
     }
 `;
 
-// const AvatarWrapper = styled(Avatar) `
-//     position: absolute;
-//     left: calc(50% - 50px);
-//     top: -50px;
-// `;
-
-
-
 const PaperWrapper = styled.div`
-    height: 380px;
+    height: 420px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -28,25 +22,19 @@ const PaperWrapper = styled.div`
     flex-wrap: wrap;
 `;
 
-const InerDiv = styled.div`
-    min-width:  260px;
+const InerDiv = styled(Paper)`
+    width:  300px;
     flex-wrap: wrap;
+    border-radius: 3px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 `;
 
-const FrontDiv = styled(InerDiv) `
-border: 1px solid black;
-height: 100%
-`;
-
-const BackDiv = styled(InerDiv) `
-border: 1px solid black;
-height: 100%
-`;
-
-const ImageDiv = styled.div `
+const ImageDiv = styled(Paper) `
     height: 260px; 
     width: 260px; 
-    border: 1px solid black;
+    border-radius: 3px;
     @media screen and (min-width: 640px) and (max-width: 1024px) {
       display: none;
     }
@@ -56,11 +44,15 @@ const AboutMe = props => {
     return (
         <ContentWrapper>
             <PaperWrapper>
-                <FrontDiv>Fromt</FrontDiv>
+                <InerDiv>
+                    <AboutMeFront />
+                </InerDiv>
                 <ImageDiv>
-                    Image
+                    <img src={ReduxLogo} />
                 </ImageDiv>
-                <BackDiv>Back</BackDiv>
+                <InerDiv>
+                    <AboutMeBack />
+                </InerDiv>
             </PaperWrapper>
         </ContentWrapper>
     );

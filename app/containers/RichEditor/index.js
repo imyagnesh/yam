@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Editor, EditorState, RichUtils } from 'draft-js';
-import getBlockAlignment from './getBlockAlignment';
-import textAlignmentModifier from './textAlignmentModifier';
-import { Root, EditorWrapper } from './style';
+
 import BoldIcon from 'material-ui/svg-icons/editor/format-bold';
 import ItalicIcon from 'material-ui/svg-icons/editor/format-italic';
 import UnderlinedIcon from 'material-ui/svg-icons/editor/format-underlined';
 import StrikethroughIcon from 'material-ui/svg-icons/editor/format-strikethrough';
-
 import BulletedListIcon from 'material-ui/svg-icons/editor/format-list-bulleted';
 import NumberedListIcon from 'material-ui/svg-icons/editor/format-list-numbered';
 import QuoteIcon from 'material-ui/svg-icons/editor/format-quote';
 import CodeIcon from 'material-ui/svg-icons/action/code';
 
+import getBlockAlignment from './getBlockAlignment';
+import textAlignmentModifier from './textAlignmentModifier';
+import { Root, EditorWrapper } from './style';
 import SelectInput from './selectListInput';
 import ButtonInput from './iconButtonInput';
 import ChangeColor from './changeColor';
@@ -44,15 +44,12 @@ const customStyleMap = {
 		color: 'rgba(180, 180, 0, 1.0)',
 	},
 };
-
-
-
 // Custom overrides for "code" style.
 
 class RichEditor extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { editorState: EditorState.createEmpty() };
+		this.state = { editorState: EditorState.createEmpty(), alignmentStyle: 'left' };
 		this.focus = () => this.refs.editor.focus();
 		this.onChange = (editorState) => this.setState({ editorState });
 		this.onTab = (e) => this._onTab(e);
@@ -109,6 +106,7 @@ class RichEditor extends Component {
 	}
 
 	toggleTextAlignment(style) {
+		this.setState({ alignmentStyle: style });
 		this.onChange(textAlignmentModifier(this.state.editorState, style, ["left", "center", "right"].filter((i) => i !== style)));
 	}
 
@@ -126,20 +124,18 @@ class RichEditor extends Component {
 		const currentStyle = editorState.getCurrentInlineStyle();
 		return (
 			<Root>
-				<SelectInput blockType={blockType} handleChange={this.toggleBlockType} menuItems={menuItems} />
-
-				<ButtonInput active={currentStyle.has('BOLD')} onToggle={this.toggleInlineStyle} inlineStyle="BOLD" child={<BoldIcon />} />
-				<ButtonInput active={currentStyle.has('ITALIC')} onToggle={this.toggleInlineStyle} inlineStyle="ITALIC" child={<ItalicIcon />} />
-				<ButtonInput active={currentStyle.has('UNDERLINE')} onToggle={this.toggleInlineStyle} inlineStyle="UNDERLINE" child={<UnderlinedIcon />} />
-				<ButtonInput active={currentStyle.has('STRIKETHROUGH')} onToggle={this.toggleInlineStyle} inlineStyle="STRIKETHROUGH" child={<StrikethroughIcon />} />
-
-				<ButtonInput active={blockType === 'unordered-list-item'} onToggle={this.toggleBlockType} inlineStyle="unordered-list-item" child={<BulletedListIcon />} />
-				<ButtonInput active={blockType === 'ordered-list-item'} onToggle={this.toggleBlockType} inlineStyle="ordered-list-item" child={<NumberedListIcon />} />
-				<ButtonInput active={blockType === 'blockquote'} onToggle={this.toggleBlockType} inlineStyle="blockquote" child={<QuoteIcon />} />
-				<ButtonInput active={blockType === 'code-block'} onToggle={this.toggleBlockType} inlineStyle="code-block" child={<CodeIcon />} />
-
-
-				<SelectInput blockType={blockType} handleChange={this.toggleTextAlignment} menuItems={textAlignItems} />
+				<div style={{ display: 'flex' }}>
+					<SelectInput blockType={blockType} handleChange={this.toggleBlockType} menuItems={menuItems} />
+					<ButtonInput active={currentStyle.has('BOLD')} onToggle={this.toggleInlineStyle} inlineStyle="BOLD" child={<BoldIcon />} />
+					<ButtonInput active={currentStyle.has('ITALIC')} onToggle={this.toggleInlineStyle} inlineStyle="ITALIC" child={<ItalicIcon />} />
+					<ButtonInput active={currentStyle.has('UNDERLINE')} onToggle={this.toggleInlineStyle} inlineStyle="UNDERLINE" child={<UnderlinedIcon />} />
+					<ButtonInput active={currentStyle.has('STRIKETHROUGH')} onToggle={this.toggleInlineStyle} inlineStyle="STRIKETHROUGH" child={<StrikethroughIcon />} />
+					<ButtonInput active={blockType === 'unordered-list-item'} onToggle={this.toggleBlockType} inlineStyle="unordered-list-item" child={<BulletedListIcon />} />
+					<ButtonInput active={blockType === 'ordered-list-item'} onToggle={this.toggleBlockType} inlineStyle="ordered-list-item" child={<NumberedListIcon />} />
+					<ButtonInput active={blockType === 'blockquote'} onToggle={this.toggleBlockType} inlineStyle="blockquote" child={<QuoteIcon />} />
+					<ButtonInput active={blockType === 'code-block'} onToggle={this.toggleBlockType} inlineStyle="code-block" child={<CodeIcon />} />
+					<SelectInput blockType={this.state.alignmentStyle} handleChange={this.toggleTextAlignment} menuItems={textAlignItems} />
+				</div>
 
 				<EditorWrapper onClick={this.focus}>
 					<Editor

@@ -10,6 +10,7 @@ import Slider from './../../InputComponents/renderSlider';
 const FormWraper = styled.form`
     flex-direction: column;
     display: flex;
+		margin: 10px;
 `;
 
 const SendButton = styled.div`
@@ -21,11 +22,14 @@ const SkillForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="skillName" component={TextField} floatingLabelText="name" />
-			<Field name="website" component={TextField} floatingLabelText="website" />
-			<Field name="description" component={TextField} floatingLabelText="description" />
+			<SendButton>
+				<h2>Skills</h2>
+			</SendButton>
+			<Field name="skillName" component={TextField} floatingLabelText="name" fullWidth />
+			<Field name="website" component={TextField} floatingLabelText="website" fullWidth />
+			<Field name="description" component={TextField} floatingLabelText="description" fullWidth />
 			<Field name="skillLogo" component={FileInput} label="logo" multiple={false} accept="image/*" />
-			<Field name="ratting" component={Slider} min={0} max={5} step={0.5} defaultValue={2.5} format={null}/>
+			<Field name="ratting" component={Slider} min={0} max={5} step={0.5} defaultValue={2.5} format={null} />
 			<SendButton>
 				<RaisedButton
 					style={{ height: '50px', minWidth: '150px' }}

@@ -13,6 +13,7 @@ import DatePicker from './../../InputComponents/renderDatePicker';
 const FormWraper = styled.form`
     flex-direction: column;
     display: flex;
+		margin: 10px;
 `;
 
 const SendButton = styled.div`
@@ -46,15 +47,18 @@ const EducationForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="collageName" component={TextField} floatingLabelText="collageName" />
-			<Field name="collageWebsite" component={TextField} floatingLabelText="collageWebsite" />
-			<Field name="description" component={TextField} floatingLabelText="description" />
+			<SendButton>
+				<h2>Education</h2>
+			</SendButton>
+			<Field name="collageName" component={TextField} floatingLabelText="collageName" fullWidth />
+			<Field name="collageWebsite" component={TextField} floatingLabelText="collageWebsite" fullWidth />
+			<Field name="description" component={TextField} floatingLabelText="description" rows={3} fullWidth multiLine />
 			<Field name="collageLogo" component={FileInput} label="collageLogo" accept="image/*" multiple={false} />
-			<Field name="university" component={TextField} floatingLabelText="university" />
-			<Field name="degree" component={TextField} floatingLabelText="degree" />
-			<Field name="joiningDate" component={DatePicker} format={null} floatingLabelText="joiningDate" />
-			<Field name="leavingDate" component={DatePicker} format={null} floatingLabelText="leavingDate" />
-			<Field name="percentage" component={TextField} floatingLabelText="percentage" />
+			<Field name="university" component={TextField} floatingLabelText="university" fullWidth />
+			<Field name="degree" component={TextField} floatingLabelText="degree" fullWidth />
+			<Field name="joiningDate" component={DatePicker} format={null} floatingLabelText="joiningDate" fullWidth />
+			<Field name="leavingDate" component={DatePicker} format={null} floatingLabelText="leavingDate" fullWidth />
+			<Field name="percentage" component={TextField} floatingLabelText="percentage" fullWidth />
 			<FieldArray name="achievements" component={renderAchievements} />
 			<SendButton>
 				<RaisedButton

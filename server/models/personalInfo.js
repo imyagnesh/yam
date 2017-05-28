@@ -19,9 +19,9 @@ const PersonalInfoSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'Designation is required.'],
 	},
-	smallImage: { data: Buffer, contentType: String },
-	largeImage: { data: Buffer, contentType: String },
-	resume: { data: Buffer, contentType: String }
+	smallImage: mongoose.Schema.Types.ObjectId,
+	largeImage: mongoose.Schema.Types.ObjectId,
+	resume: mongoose.Schema.Types.ObjectId
 }, { versionKey: false });
 
 module.exports = mongoose.model('PersonalInfo', PersonalInfoSchema);

@@ -4,10 +4,14 @@ import ReactDom from 'react-dom';
 import styled from 'styled-components';
 import umbraImg from '../../common/images/umbra.svg';
 import penumbraImg from '../../common/images/penumbra.svg';
+import AboutMeFront from '../../components/AboutMeFront';
+import AboutMeBack from '../../components/AboutMeBack';
+import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+import { white } from 'material-ui/styles/colors';
 
 const FlipCardWrapper = styled.div`
-  width: 260px;
-  height: 380px;
+  width: 300px;
+  height: 420px;
   position: relative;
   perspective: 500px;
   will-change: transform;
@@ -20,19 +24,19 @@ backface-visibility: hidden;
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction:column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 3px;
   overflow: hidden;
+  background: #fff;
 `;
 
 const CardFront = styled(CardWrapper) `
-    background: green;
-  color: #FFF;
+  color: #000;
 `;
 
 const CardBack = styled(CardWrapper) `
-background: red;
 color: #FFF;
   transform: rotateY(180deg);
 `;
@@ -48,7 +52,7 @@ const CardButton = styled.button`
   text-indent: -10000px;
 `;
 
-const ShadowWrapper = styled.div `
+const ShadowWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -57,9 +61,9 @@ const ShadowWrapper = styled.div `
   backface-visibility: visible;
 `;
 
-const UmbraCard = styled(ShadowWrapper)`
-  width: 270px;
-  height: 390px;
+const UmbraCard = styled(ShadowWrapper) `
+  width: 310px;
+  height: 430px;
   top: -5px;
   left: -5px;
   background: url(${umbraImg}) center center no-repeat;
@@ -67,7 +71,7 @@ const UmbraCard = styled(ShadowWrapper)`
   opacity: 0.3;
 `;
 
-const PenumbraCard = styled(ShadowWrapper)`
+const PenumbraCard = styled(ShadowWrapper) `
   width: 320px;
   height: 450px;
   top: -35px;
@@ -75,6 +79,16 @@ const PenumbraCard = styled(ShadowWrapper)`
   background: url(${penumbraImg}) center center no-repeat;
   transform: translateY(2px);
   opacity: 0;
+`;
+
+const CardFooter = styled.div`
+  display: flex;
+  height: 40px;
+  width: 100%;  
+  background: #000;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 `;
 
 const scale = (500 + 100) / 500;
@@ -172,13 +186,17 @@ class FlipCard extends Component {
                 <UmbraCard ref="umbra" />
                 <PenumbraCard ref="penumbra" />
                 <CardFront tabindex="-1" ref="frontCard">
-                    <h1>Front</h1>
-                    <CardButton onClick={_ => this.cardClick(1)}>Flip card</CardButton>
+                    <AboutMeFront />
+                    <CardFooter onClick={_ => this.cardClick(1)}>
+                        <ArrowForward color={white} />
+                    </CardFooter>
                 </CardFront>
 
                 <CardBack tabindex="-1" ref="backCard">
-                    <h1>Back</h1>
-                    <CardButton onClick={_ => this.cardClick(2)}>Flip card</CardButton>
+                    <AboutMeBack />
+                    <CardFooter onClick={_ => this.cardClick(2)}>
+                        <ArrowForward color={white} />
+                    </CardFooter>
                 </CardBack>
             </FlipCardWrapper>
         );

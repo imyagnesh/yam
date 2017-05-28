@@ -11,6 +11,7 @@ import { appLocales } from '../../i18n';
 const FormWraper = styled.form`
     flex-direction: column;
     display: flex;
+		margin: 10px;
 `;
 
 const SendButton = styled.div`
@@ -22,11 +23,14 @@ const AboutMeForm = props => {
 	const { handleSubmit, pristine, loading } = props;
 	return (
 		<FormWraper onSubmit={handleSubmit}>
-			<Field name="aboutMe" component={TextField} floatingLabelText="About Me" />
-			<Field name="funFacts" component={TextField} floatingLabelText="Fun Facts" />
-			<Field name="passion" component={TextField} floatingLabelText="Passion" />
-			<Field name="mylife" component={TextField} floatingLabelText="My Life" />
-			<Field name="language" component={SelectField} floatingLabelText="Language">
+			<SendButton>
+				<h2>Dashboard</h2>
+			</SendButton>
+			<Field name="aboutMe" component={TextField} floatingLabelText="About Me" rows={3} fullWidth multiLine />
+			<Field name="funFacts" component={TextField} floatingLabelText="Fun Facts" rows={3} fullWidth multiLine />
+			<Field name="passion" component={TextField} floatingLabelText="Passion" rows={3} fullWidth multiLine />
+			<Field name="mylife" component={TextField} floatingLabelText="My Life" rows={3} fullWidth multiLine />
+			<Field name="language" component={SelectField} floatingLabelText="Language" fullWidth>
 				{
 					appLocales.map((value) =>
 						<MenuItem

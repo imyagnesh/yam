@@ -28,7 +28,6 @@ module.exports.saveAboutMe = (req, res) => {
 };
 
 module.exports.getAboutMe = (req, res) => {	
-	const decodeToken = jwt.verify(req.headers.authorization.split(' ')[1], config.jwtSecret);
-	const query = { userId: decodeToken.sub, language: req.params.language };
+	const query = { language: req.params.language };
 	findOne(AboutMe, query, res);
 };

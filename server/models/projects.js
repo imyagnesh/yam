@@ -9,8 +9,8 @@ const ProjectSchema = new mongoose.Schema({
 	Description: String,
 	website: String,
 	myRole: String,
-	imgs: [{ data: Buffer, contentType: String }],
-	video: { data: Buffer, contentType: String },
+	imgs: [{ type: mongoose.Schema.Types.ObjectId }],
+	video: mongoose.Schema.Types.ObjectId,
 	userId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
