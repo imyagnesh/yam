@@ -30,6 +30,7 @@
   <meta name="msapplication-TileColor" content="#222222">
   <meta name="msapplication-TileImage" content="mstile-144x144.png">
   <meta name="msapplication-config" content="browserconfig.xml">
+
   <style>
     @font-face {
       font-family: 'fontello';
@@ -38,23 +39,47 @@
       font-weight: normal;
       font-style: normal;
     }
-    
+    /* fallback */
+
+    @font-face {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Material Icons'), local('MaterialIcons-Regular'), url(MaterialIcons-Regular.woff2) format('woff2');
+    }
+
+    .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+
     * {
       box-sizing: border-box;
     }
-    
+
     html,
     body {
-      argin: 0;
+      margin: 0;
       padding: 0;
       height: 100%;
       position: relative;
       font-family: Roboto, Helvetica Neue, sans-serif;
       background-color: rgb(255, 255, 255);
     }
-    
+
     #root {
-      background-color: #fafafa;
+      background-color: #f8f8f8;
       min-height: 100%;
       min-width: 100%;
     }

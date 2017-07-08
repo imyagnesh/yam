@@ -36,3 +36,9 @@ import '!file-loader?name=[name].[ext]!common/fonts/fontello.eot';
 import '!file-loader?name=[name].[ext]!common/fonts/fontello.woff';
 import '!file-loader?name=[name].[ext]!common/fonts/fontello.ttf';
 import '!file-loader?name=[name].[ext]!common/fonts/fontello.svg';
+
+import '!file-loader?name=[name].[ext]!common/fonts/MaterialIcons-Regular.eot';
+import '!file-loader?name=[name].[ext]!common/fonts/MaterialIcons-Regular.woff';
+import '!file-loader?name=[name].[ext]!common/fonts/MaterialIcons-Regular.woff2';
+import '!file-loader?name=[name].[ext]!common/fonts/MaterialIcons-Regular.ttf';
+import '!file-loader?name=[name].[ext]!common/fonts/MaterialIcons-Regular.svg';
