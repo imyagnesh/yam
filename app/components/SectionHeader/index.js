@@ -1,6 +1,7 @@
-import React, {PropTypes} from 'react';
-import styled from 'styled-components';
-import Divider from 'material-ui/Divider';
+import React, { PropTypes } from "react";
+import styled from "styled-components";
+import Divider from "material-ui/Divider";
+import { redA200 } from "material-ui/styles/colors";
 
 const SectionHeaderWrapper = styled.div`
   flex-direction: column;
@@ -14,7 +15,7 @@ const SectionHeaderWrapper = styled.div`
 
 const SubHeaderWrapper = styled.p`
   font-weight: 400;
-  letter-spacing: .01em;
+  letter-spacing: 0.01em;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -23,8 +24,9 @@ const SubHeaderWrapper = styled.p`
 const TitleWrapper = styled.h1`
   font-size: 20px;
   font-weight: 500;
-  letter-spacing: .005em;
-  text-transform: uppercase
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: rgb(255, 82, 82);
   margin: 0;
 `;
 
@@ -34,17 +36,19 @@ const CenterAlign = styled.div`
   margin: 0.5em;
 `;
 
-const SectionHeader = (({ caption, title }) =>
+const SectionHeader = ({ caption, title }) => (
   <SectionHeaderWrapper>
     <SubHeaderWrapper>{caption}</SubHeaderWrapper>
     <TitleWrapper>{title}</TitleWrapper>
-    <CenterAlign><Divider /></CenterAlign>
+    <CenterAlign>
+      <Divider />
+    </CenterAlign>
   </SectionHeaderWrapper>
 );
 
 SectionHeader.propTypes = {
   caption: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,  
+  title: PropTypes.string.isRequired
 };
 
 export default SectionHeader;
