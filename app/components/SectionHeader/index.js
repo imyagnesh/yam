@@ -1,7 +1,6 @@
 import React, { PropTypes } from "react";
 import styled from "styled-components";
 import Divider from "material-ui/Divider";
-import { redA200 } from "material-ui/styles/colors";
 
 const SectionHeaderWrapper = styled.div`
   flex-direction: column;
@@ -38,7 +37,7 @@ const CenterAlign = styled.div`
 
 const SectionHeader = ({ caption, title }) => (
   <SectionHeaderWrapper>
-    <SubHeaderWrapper>{caption}</SubHeaderWrapper>
+    {!!caption && <SubHeaderWrapper>{caption}</SubHeaderWrapper>}
     <TitleWrapper>{title}</TitleWrapper>
     <CenterAlign>
       <Divider />
@@ -47,8 +46,12 @@ const SectionHeader = ({ caption, title }) => (
 );
 
 SectionHeader.propTypes = {
-  caption: PropTypes.string.isRequired,
+  caption: PropTypes.string,
   title: PropTypes.string.isRequired
+};
+
+SectionHeader.defaultProps = {
+  caption: ""
 };
 
 export default SectionHeader;

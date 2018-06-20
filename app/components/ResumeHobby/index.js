@@ -4,7 +4,7 @@ import Paper from "material-ui/Paper";
 import FontIcon from "material-ui/FontIcon";
 
 const iconStyles = {
-  fontSize: 48
+  fontSize: 36
 };
 
 const ContentWrapper = styled.div`
